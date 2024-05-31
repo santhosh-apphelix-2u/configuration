@@ -22,6 +22,8 @@ export DD_DJANGO_USE_HANDLER_RESOURCE_FORMAT=true
 # trace debug logging issue doesn't actually affect edxapp for some
 # reason.
 export DD_TRACE_LOG_STREAM_HANDLER=false
+export DD_PROFILING_ENABLED=true
+export DD_DATA_STREAMS_ENABLED=true
 {% endif -%}
 
 source {{ ecommerce_worker_home }}/{{ ecommerce_worker_service_name }}_env
