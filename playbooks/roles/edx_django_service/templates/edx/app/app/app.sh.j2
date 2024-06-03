@@ -34,8 +34,6 @@ export DD_DJANGO_USE_HANDLER_RESOURCE_FORMAT=true
 # other trace-related configs that are documented seem to help, but
 # from testing DD_TRACE_LOG_STREAM_HANDLER=false seems to help.
 export DD_TRACE_LOG_STREAM_HANDLER=false
-export DD_PROFILING_ENABLED=true
-export DD_DATA_STREAMS_ENABLED=true
 {% endif -%}
 
 export EDX_REST_API_CLIENT_NAME="{{ COMMON_ENVIRONMENT }}-{{ COMMON_DEPLOYMENT }}-{{ edx_django_service_name }}"
