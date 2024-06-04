@@ -22,8 +22,12 @@ export DD_DJANGO_USE_HANDLER_RESOURCE_FORMAT=true
 # trace debug logging issue doesn't actually affect edxapp for some
 # reason.
 export DD_TRACE_LOG_STREAM_HANDLER=false
-export DD_PROFILING_ENABLED=true
-export DD_DATA_STREAMS_ENABLED=true
+
+# TODO: There seems to be some potential issues enabling APM profiling in both NewRelic and Datadog.
+# A safe bet would be to enable these after NewRelic profiling is disabled.
+# Tracking Ticket: https://2u-internal.atlassian.net/browse/COSMO-296
+# export DD_PROFILING_ENABLED=true
+# export DD_DATA_STREAMS_ENABLED=true
 {% endif -%}
 
 source {{ insights_app_dir }}/insights_env
