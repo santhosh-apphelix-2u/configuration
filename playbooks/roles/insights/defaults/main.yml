@@ -53,6 +53,7 @@ INSIGHTS_SEGMENT_IGNORE_EMAIL_REGEX: !!null
 INSIGHTS_THEME_SCSS: 'sass/themes/open-edx.scss'
 INSIGHTS_RESEARCH_URL: 'https://www.edx.org/research-pedagogy'
 INSIGHTS_OPEN_SOURCE_URL: 'http://set-me-please'
+INSIGHTS_DATADOG_ENABLE: "{{COMMON_ENABLE_DATADOG and COMMON_ENABLE_DATADOG_APP}}"
 
 INSIGHTS_DOMAIN: 'insights'
 
