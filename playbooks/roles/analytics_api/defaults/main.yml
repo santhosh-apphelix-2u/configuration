@@ -20,6 +20,7 @@ ANALYTICS_API_GIT_IDENTITY: !!null
 analytics_api_service_name: "analytics_api"
 analytics_api_gunicorn_port: "8100"
 
+analytics_api_datadog_service_name: "edx-analytics-api"
 ANALYTICS_API_DJANGO_SETTINGS_MODULE: "analyticsdataserver.settings.production"
 
 analytics_api_environment:
