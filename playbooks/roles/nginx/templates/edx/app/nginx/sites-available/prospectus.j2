@@ -119,7 +119,7 @@ server {
     proxy_pass_request_headers off;
   {% endif %}
   }
-  
+
   # favicon is requested a lot.  cache it at the edge.
 
   location /favicon.ico {
@@ -173,6 +173,21 @@ server {
     proxy_redirect "/{{ PROSPECTUS_S3_HOSTING_PREFIX }}" " ";
   {% else %}
     try_files $uri $uri/ /bio/index.html;
+  {% endif %}
+  }
+
+  location /password_reset_confirm/ {
+  {% if PROSPECTUS_S3_HOSTING_PROXY_ENABLED %}
+    rewrite ^ /{{ PROSPECTUS_S3_HOSTING_PREFIX }}/password_reset_confirm/index.html break;
+    proxy_pass {{ PROSPECTUS_S3_HOSTING_BUCKET_URL }}/{{ PROSPECTUS_S3_HOSTING_PREFIX }}/password_reset_confirm/index.html;
+    # Hide client headers from S3 to prevent request headers too big error
+    proxy_pass_request_headers off;
+    # proxy_redirect ensures redirects from s3 are rewritten
+    # For example it will fix a redirect from s3 to prevent /school/mitx from trying to redirect to /924c142-1/school/mitx/
+    # The second parameter being " " is to prevent nginx sticking http://hostname in front of the location directive
+    proxy_redirect "/{{ PROSPECTUS_S3_HOSTING_PREFIX }}" " ";
+  {% else %}
+    try_files $uri $uri/ /password_reset_confirm/index.html;
   {% endif %}
   }
 
