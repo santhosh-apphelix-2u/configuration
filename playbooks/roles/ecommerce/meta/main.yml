@@ -69,7 +69,7 @@ dependencies:
     edx_django_service_copy_config_enabled: '{{ ECOMMERCE_COPY_CONFIG_ENABLED }}'
     EDX_DJANGO_SERVICE_ENABLE_ADMIN_URLS_RESTRICTION: '{{ ECOMMERCE_ENABLE_ADMIN_URLS_RESTRICTION }}'
     EDX_DJANGO_SERVICE_ADMIN_URLS: '{{ ECOMMERCE_ADMIN_URLS }}'
-    edx_django_service_git_url: '{{ ECOMMERCE_GIT_URL }}'
+    edx_django_service_repository_git_url: '{{ ECOMMERCE_REPOSITORY_GIT_URL }}'
   - role: antivirus
     ANTIVIRUS_SCAN_DIRECTORY: "{{ ECOMMERCE_ANTIVIRUS_SCAN_DIRECTORY }}"
     when: ECOMMERCE_ENABLE_ANTIVIRUS

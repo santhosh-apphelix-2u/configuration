@@ -13,7 +13,7 @@
 
 ECOMMERCE_GIT_IDENTITY: !!null
 
-ECOMMERCE_GIT_URL: "https://github.com/edx/ecommerce.git"
+ECOMMERCE_REPOSITORY_GIT_URL: "https://github.com/edx/ecommerce.git"
 ECOMMERCE_REPOS:
   - PROTOCOL: "{{ COMMON_GIT_PROTOCOL }}"
     DOMAIN: "{{ COMMON_GIT_MIRROR }}"

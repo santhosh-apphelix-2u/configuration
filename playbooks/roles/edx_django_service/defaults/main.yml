@@ -17,7 +17,7 @@ edx_django_service_name_devstack_logs:
   - '{{ supervisor_log_dir }}/{{ edx_django_service_name }}-stdout.log'
   - '{{ supervisor_log_dir }}/{{ edx_django_service_name }}-stderr.log'
 
-edx_django_service_git_url: ''
+edx_django_service_repository_git_url: ''
 edx_django_service_git_protocol: '{{ COMMON_GIT_PROTOCOL }}'
 edx_django_service_git_domain: '{{ COMMON_GIT_MIRROR }}'
 edx_django_service_git_path: '{{ COMMON_GIT_PATH }}'
