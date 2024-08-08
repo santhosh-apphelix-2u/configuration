@@ -52,3 +52,4 @@ dependencies:
     edx_django_service_decrypt_config_enabled: '{{ ANALYTICS_API_DECRYPT_CONFIG_ENABLED }}'
     edx_django_service_copy_config_enabled: '{{ ANALYTICS_API_COPY_CONFIG_ENABLED }}'
     edx_django_datadog_service: '{{ analytics_api_datadog_service_name }}'
+    edx_django_service_git_url: '{{ ANALYTICS_API_GIT_URL }}'
