@@ -277,6 +277,7 @@ EDXAPP_ENABLE_READING_FROM_MULTIPLE_HISTORY_TABLES: True
 EDXAPP_GIT_REPO_DIR: '/edx/var/edxapp/course_repos'
 EDXAPP_GIT_REPO_EXPORT_DIR: '/edx/var/edxapp/export_course_repos'
 EDXAPP_ENABLE_EXPORT_GIT: false
+EDXAPP_REPOSITORY_GIT_URL: "https://github.com/openedx/edx-platform.git"
 
 EDXAPP_FINANCIAL_REPORTS:
   BUCKET: !!null

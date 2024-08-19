@@ -24,6 +24,8 @@ export NEW_RELIC_LICENSE_KEY="{{ NEWRELIC_LICENSE_KEY }}"
 {% set executable = edxapp_venv_bin + '/ddtrace-run ' + executable %}
 export DD_TAGS="service:edx-edxapp-cms version:{{ app_version }}"
 export DD_DJANGO_USE_HANDLER_RESOURCE_FORMAT=true
+export DD_GIT_COMMIT_SHA="{{ app_version }}"
+export DD_GIT_REPOSITORY_URL="{{ EDXAPP_REPOSITORY_GIT_URL }}"
 # Copied from edx_django_service playbook for consistency; Datadog
 # trace debug logging issue doesn't actually affect edxapp for some
 # reason.
