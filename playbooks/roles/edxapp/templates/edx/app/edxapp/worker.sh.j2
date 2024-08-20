@@ -22,6 +22,7 @@ export DD_TAGS="service:edx-edxapp-${SERVICE_VARIANT}-workers queue:${QUEUE_NAME
 export DD_DJANGO_USE_LEGACY_RESOURCE_FORMAT=true
 export DD_GIT_COMMIT_SHA="{{ app_version }}"
 export DD_GIT_REPOSITORY_URL="{{ EDXAPP_REPOSITORY_GIT_URL }}"
+export DD_LOGS_INJECTION=true
 # Copied from edx_django_service playbook for consistency; Datadog
 # trace debug logging issue doesn't actually affect edxapp for some
 # reason.
