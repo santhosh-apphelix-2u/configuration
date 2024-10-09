@@ -25,10 +25,6 @@
      when: devstack is defined and devstack
    - role: datadog
      when: COMMON_ENABLE_DATADOG
-   - role: splunkforwarder
-     when: COMMON_ENABLE_SPLUNKFORWARDER
-   - role: newrelic_infrastructure
-     when: COMMON_ENABLE_NEWRELIC_INFRASTRUCTURE
    - role: minos
      when: COMMON_ENABLE_MINOS
    - role: datadog-uninstall
