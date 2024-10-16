@@ -6,6 +6,10 @@
 source {{ edxapp_app_dir }}/edxapp_env
 {% set executable = edxapp_venv_bin + '/single-beat ' + edxapp_venv_bin + '/celery' %}
 
+{% if COMMON_ENABLE_DATADOG and COMMON_ENABLE_DATADOG_APP %}
+{% set executable = edxapp_venv_bin + '/ddtrace-run ' + executable %}
+{% endif %}
+
 # We exec so that celery is the child of supervisor and can be managed properly
 
 exec {{ executable }} --config="${SERVICE_CONFIG}" beat $@
