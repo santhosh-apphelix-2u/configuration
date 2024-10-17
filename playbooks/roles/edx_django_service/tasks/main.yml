@@ -61,6 +61,21 @@
     - install
     - install:configuration
 
+- name: install python3.12
+  apt:
+    pkg:
+      - python3.12-dev
+      - python3.12-distutils
+    update_cache: yes
+  register: install_pkgs
+  until: install_pkgs is success
+  retries: 10
+  delay: 5
+  when: edx_django_service_use_python312 and not edx_django_service_enable_experimental_docker_shim
+  tags:
+    - install
+    - install:system-requirements
+
 - name: install python3.8
   apt:
     pkg:
@@ -88,6 +103,16 @@
   with_items:
     - python3-pip
     - python3-dev
+  tags:
+    - install
+    - install:system-requirements
+
+- name: build virtualenv with python3.12
+  command: "virtualenv --python=python3.12 {{ edx_django_service_venv_dir }}"
+  args:
+    creates: "{{ edx_django_service_venv_dir }}/bin/pip"
+  become_user: "{{ edx_django_service_user }}"
+  when: edx_django_service_use_python312 and not edx_django_service_enable_experimental_docker_shim
   tags:
     - install
     - install:system-requirements
