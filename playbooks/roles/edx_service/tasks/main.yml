@@ -130,6 +130,21 @@
     - install:configuration
     - install:app-configuration
 
+- name: Install Python 3.12
+  apt:
+    pkg:
+      - python3.12-dev
+      - python3.12-distutils
+    update_cache: yes
+  register: install_pkgs
+  until: install_pkgs is success
+  retries: 10
+  delay: 5
+  when: edx_service_use_python312
+  tags:   
+    - install
+    - install:system-requirements
+
 - name: Install Python 3.8
   apt:
     pkg:
@@ -157,6 +172,16 @@
   with_items:
     - python3-pip
     - python3-dev
+  tags:
+    - install
+    - install:system-requirements
+
+- name: Build virtualenv with Python 3.12
+  command: "virtualenv --python=python3.12 {{ edx_service_venv_dir }}"
+  args:
+    creates: "{{ edx_service_venv_dir }}/bin/pip"
+  become_user: "{{ edx_service_user }}"
+  when: edx_service_use_python312
   tags:
     - install
     - install:system-requirements
