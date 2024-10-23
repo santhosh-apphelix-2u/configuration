@@ -27,6 +27,11 @@ export DD_DJANGO_INSTRUMENT_MIDDLEWARE=false
 
 {% endif -%}
 
+# We want to be able to toggle this on separately from DD in general.
+{% if EDXAPP_DATADOG_PROFILING_ENABLE %}
+export DD_PROFILING_ENABLED=true
+{% endif -%}
+
 export PORT="{{ edxapp_lms_gunicorn_port }}"
 export ADDRESS="{{ edxapp_lms_gunicorn_host }}"
 export LANG="{{ EDXAPP_LANG }}"
