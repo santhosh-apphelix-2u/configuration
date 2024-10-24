@@ -631,6 +631,7 @@ EDXAPP_XML_S3_BUCKET: !!null
 EDXAPP_XML_S3_KEY: !!null
 
 EDXAPP_DATADOG_ENABLE: "{{COMMON_ENABLE_DATADOG and COMMON_ENABLE_DATADOG_APP}}"
+EDXAPP_DATADOG_PROFILING_ENABLE: "{{EDXAPP_DATADOG_ENABLE and COMMON_ENABLE_DATADOG_PROFILING}}"
 # ddtrace 2.7.9 contains a fix for a pymongo incompatibility.
 # (Same fix is present in 2.8.2 on the 2.8.x release line.)
 EDXAPP_DDTRACE_PIP_SPEC: 'ddtrace>=2.7.9'
