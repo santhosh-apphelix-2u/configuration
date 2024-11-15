@@ -30,6 +30,7 @@ export DD_DJANGO_INSTRUMENT_MIDDLEWARE=false
 {% if EDXAPP_DATADOG_PROFILING_ENABLE %}
 export DD_PROFILING_ENABLED=true
 export DD_PROFILING_STACK_V2_ENABLED=true
+export DD_PROFILING_TIMELINE_ENABLED=true
 {% endif -%}
 
 export PORT="{{ edxapp_cms_gunicorn_port }}"
