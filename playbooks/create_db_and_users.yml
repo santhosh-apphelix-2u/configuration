@@ -192,6 +192,29 @@
         login_password: "{{ database_connection.login_password }}"
       when: datadog_mysql_monitoring_enabled | default(false)
 
+    - name: Create Runtime setup consumer for datadog
+      mysql_query:
+        query: |
+         CREATE PROCEDURE {{ datadog_schema }}.enable_events_statements_consumers()
+             SQL SECURITY DEFINER
+         BEGIN
+             UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name LIKE 'events_statements_%';
+             UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events_waits_current';
+         END
+        login_host: "{{ database_connection.login_host }}"
+        login_user: "{{ database_connection.login_user }}"
+        login_password: "{{ database_connection.login_password }}"
+      when: datadog_mysql_monitoring_enabled | default(false)
+      ignore_errors: yes
+
+    - name: Grant EXECUTE on enable_events_statements_consumers procedure to Datadog user
+      mysql_query:
+        query: "GRANT EXECUTE ON PROCEDURE {{ datadog_procedure_schema }}.enable_events_statements_consumers TO {{ datadog_user }}@'%';"
+        login_host: "{{ database_connection.login_host }}"
+        login_user: "{{ database_connection.login_user }}"
+        login_password: "{{ database_connection.login_password }}"
+      when: datadog_mysql_monitoring_enabled | default(false)
+
     - name: Grant EXECUTE on explain_statement procedure in database {{ item }} to Datadog user
       mysql_query:
         query: |
