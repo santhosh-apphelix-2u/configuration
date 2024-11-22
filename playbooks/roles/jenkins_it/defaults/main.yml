@@ -13,7 +13,6 @@ it_oracle_packages:
 
 it_jenkins_python_versions:
   - python3.5-dev
-  - python3.12-dev
 
 it_jenkins_configuration_scripts:
   - 1addJarsToClasspath.groovy
