@@ -18,11 +18,8 @@ export DD_LOGS_INJECTION=true
 # reason.
 export DD_TRACE_LOG_STREAM_HANDLER=false
 
-# Temporary: We currently have a span (or several) for each Django middleware,
-# and Datadog Support has implied that it will be easier to debug our tracing
-# issues if we don't record those middleware. (They make up the bulk of traces,
-# at least visually.)
-# See https://github.com/edx/edx-arch-experiments/issues/692
+# Suppress middleware spans because there are about 100 for each request.
+# Remove (or set to true) for debugging.
 export DD_DJANGO_INSTRUMENT_MIDDLEWARE=false
 {% endif -%}
 
