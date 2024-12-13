@@ -1,12 +1,14 @@
 {% include "edxapp_common.j2" %}
 
+export WEBPACK_CONFIG_PATH=webpack.prod.config.js
+export STATIC_ROOT_LMS=/edx/var/edxapp/staticfiles
+export STATIC_ROOT_CMS=/edx/var/edxapp/staticfiles/studio
+
 {% if edxapp_staticfiles_storage_overrides %}
 {% for override in edxapp_staticfiles_storage_overrides %}
+export STATICFILES_STORAGE={{ override }}
 sudo -E -H -u {{ edxapp_user }} \
     env "PATH=$PATH" \
-    "WEBPACK_CONFIG_PATH=webpack.prod.config.js" \
-    "STATIC_ROOT_LMS=/edx/var/edxapp/staticfiles" \
-    "STATIC_ROOT_CMS=/edx/var/edxapp/staticfiles/studio" \
     npm install \
     && npm run webpack \
     && npm run compile-sass -- --theme-dir /edx/var/edx-themes/edx-themes/edx-platform --theme-dir /edx/app/edxapp/edx-platform/themes \
@@ -16,9 +18,6 @@ sudo -E -H -u {{ edxapp_user }} \
 {% else %}
 sudo -E -H -u {{ edxapp_user }} \
     env "PATH=$PATH" \
-    "WEBPACK_CONFIG_PATH=webpack.prod.config.js" \
-    "STATIC_ROOT_LMS=/edx/var/edxapp/staticfiles" \
-    "STATIC_ROOT_CMS=/edx/var/edxapp/staticfiles/studio" \
     npm install \
     && npm run webpack \
     && npm run compile-sass -- --theme-dir /edx/var/edx-themes/edx-themes/edx-platform --theme-dir /edx/app/edxapp/edx-platform/themes \
