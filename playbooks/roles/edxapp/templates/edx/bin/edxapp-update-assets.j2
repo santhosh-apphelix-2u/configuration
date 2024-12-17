@@ -6,11 +6,10 @@ export STATIC_ROOT_CMS=/edx/var/edxapp/staticfiles/studio
 
 {% if edxapp_staticfiles_storage_overrides %}
 {% for override in edxapp_staticfiles_storage_overrides %}
-export STATICFILES_STORAGE={{ override }}
+export STATICFILES_STORAGE={{ override | quote }}
 sudo -E -H -u {{ edxapp_user }} \
     env "PATH=$PATH" \
-    npm install \
-    && npm run webpack \
+    npm run webpack \
     && npm run compile-sass -- --theme-dir /edx/var/edx-themes/edx-themes/edx-platform --theme-dir /edx/app/edxapp/edx-platform/themes \
     && {{ edxapp_venv_bin }}/python manage.py lms collectstatic --noinput --settings=$EDX_PLATFORM_SETTINGS \
     && {{ edxapp_venv_bin }}/python manage.py cms collectstatic --noinput --settings=$EDX_PLATFORM_SETTINGS
@@ -18,8 +17,7 @@ sudo -E -H -u {{ edxapp_user }} \
 {% else %}
 sudo -E -H -u {{ edxapp_user }} \
     env "PATH=$PATH" \
-    npm install \
-    && npm run webpack \
+    npm run webpack \
     && npm run compile-sass -- --theme-dir /edx/var/edx-themes/edx-themes/edx-platform --theme-dir /edx/app/edxapp/edx-platform/themes \
     && {{ edxapp_venv_bin }}/python manage.py lms collectstatic --noinput --settings=$EDX_PLATFORM_SETTINGS \
     && {{ edxapp_venv_bin }}/python manage.py cms collectstatic --noinput --settings=$EDX_PLATFORM_SETTINGS
