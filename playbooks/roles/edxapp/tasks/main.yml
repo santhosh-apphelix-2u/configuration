@@ -59,6 +59,18 @@
     - install
     - install:base
 
+- name: create edxapp gunicorn log dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ common_web_user }}"
+    group: "{{ common_web_user }}"
+  with_items:
+    - "{{ edxapp_gunicorn_log_dir }}"
+  tags:
+    - install
+    - install:base
+
 - name: Ensure the tracking folder exists
   file:
     path: "{{ COMMON_LOG_DIR }}/tracking"

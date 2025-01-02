@@ -35,6 +35,8 @@ EDXAPP_CMS_GUNICORN_EXTRA: ""
 EDXAPP_CMS_GUNICORN_EXTRA_CONF: ""
 EDXAPP_CMS_GUNICORN_TIMEOUT: 300
 
+EDXAPP_USE_GUNICORN_SEPARATE_LOG_FILE: False
+
 # Set this to the maximum number
 # of requests for gunicorn for the lms and cms
 # gunicorn --max-requests <num>
@@ -1113,6 +1115,9 @@ EDXAPP_COMPLETION_AGGREGATOR_URL: null
 edxapp_data_dir: "{{ COMMON_DATA_DIR }}/edxapp"
 edxapp_app_dir: "{{ COMMON_APP_DIR }}/edxapp"
 edxapp_log_dir: "{{ COMMON_LOG_DIR }}/edx"
+edxapp_gunicorn_log_dir: 
+  - "{{ COMMON_LOG_DIR }}/gunicorn-lms"
+  - "{{ COMMON_LOG_DIR }}/gunicorn-cms"
 edxapp_venvs_dir: "{{ edxapp_app_dir }}/venvs"
 edxapp_venv_dir: "{{ edxapp_venvs_dir }}/edxapp"
 edxapp_venv_bin: "{{ edxapp_venv_dir }}/bin"
