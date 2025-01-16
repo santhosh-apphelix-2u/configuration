@@ -56,6 +56,8 @@ XQUEUE_MYSQL_PORT: '3306'
 XQUEUE_MYSQL_OPTIONS: {}
 XQUEUE_MYSQL_CONN_MAX_AGE: 0 # This is Django's default https://docs.djangoproject.com/en/1.11/ref/settings/#conn-max-age
 
+XQUEUE_OPENEDX_TELEMETRY: !!null
+
 XQUEUE_NEWRELIC_APPNAME: "{{ COMMON_ENVIRONMENT }}-{{ COMMON_DEPLOYMENT }}-xqueue"
 XQUEUE_CONSUMER_NEWRELIC_APPNAME: "{{ COMMON_ENVIRONMENT }}-{{ COMMON_DEPLOYMENT }}-xqueue_consumer"
 
@@ -110,6 +112,7 @@ XQUEUE_CONFIG:
   SWIFT_AUTH_URL: "{{ XQUEUE_SWIFT_AUTH_URL }}"
   SWIFT_AUTH_VERSION: "{{ XQUEUE_SWIFT_AUTH_VERSION }}"
   SWIFT_REGION_NAME: "{{ XQUEUE_SWIFT_REGION_NAME }}"
+  OPENEDX_TELEMETRY: "{{ XQUEUE_OPENEDX_TELEMETRY }}"
   # This is used by the xqueue consumer in case it needs to send a password protected submission out for a push grader.
   REQUESTS_BASIC_AUTH: ["{{ XQUEUE_BASIC_AUTH_USER }}", "{{XQUEUE_BASIC_AUTH_PASSWORD}}"]
   USERS: "{{ XQUEUE_DJANGO_USERS }}"
