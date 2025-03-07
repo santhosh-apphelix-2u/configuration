@@ -11,7 +11,6 @@
 # Note: Changes to this file will automatically be used by other repos, referencing
 #  this file from Github directly. It does not require packaging in edx-lint.
 
-
 # using LTS django version
 Django<5.0
 
@@ -33,3 +32,7 @@ event-tracking<2.4.1
 # Cause: https://github.com/openedx/edx-lint/issues/458
 # This can be unpinned once https://github.com/openedx/edx-lint/issues/459 has been resolved.
 pip<24.3
+
+# Cause: https://github.com/openedx/edx-lint/issues/475
+# This can be unpinned once https://github.com/openedx/edx-lint/issues/476 has been resolved.
+urllib3<2.3.0
