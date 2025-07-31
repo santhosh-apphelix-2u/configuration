@@ -12,7 +12,7 @@ assume-role() {
     set +x
     ROLE_ARN="${1}"
     SESSIONID=$(date +"%s")
-    DURATIONSECONDS="${2:-14400}" # Default to 4 hours if not specified
+    DURATIONSECONDS="${2:-3600}"
 
     RESULT=(`aws sts assume-role --role-arn $ROLE_ARN \
             --role-session-name $SESSIONID \
