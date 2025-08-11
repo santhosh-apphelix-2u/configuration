@@ -17,6 +17,24 @@
     - install
     - install:system-requirements
 
+# following task is only needed for docker builds 
+- name: install pip for python3.11 for docker image
+  shell: |
+    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11
+  when: xqueue_use_python311 and xqueue_image_building
+  tags:
+    - install
+    - install:system-requirements
+
+# following task is only needed for docker builds
+- name: install virtualenv for docker image
+  shell: |
+    python3.11 -m pip install virtualenv
+  when: xqueue_use_python311 and xqueue_image_building
+  tags:
+    - install
+    - install:system-requirements
+
 - name: install python3
   apt:
     name: "{{ item }}"
