@@ -128,12 +128,15 @@
     - install
     - install:app-requirements
 
-- name: Pin pip to a specific version.
-  command: "{{ edxapp_venv_dir }}/bin/pip install pip=={{ COMMON_PIP_VERSION }}"
+- name: Install pip and pip-tools requirements
+  command: "{{ edxapp_venv_dir }}/bin/pip install -r requirements/{{ item }}"
   args:
     chdir: "{{ edxapp_code_dir }}"
   become_user: "{{ edxapp_user }}"
   environment: "{{ edxapp_environment }}"
+  with_items:
+    - pip.txt
+    - pip-tools.txt
   tags:
     - install
     - install:app-requirements
@@ -192,23 +195,6 @@
   when: EDXAPP_INSTALL_PRIVATE_REQUIREMENTS or EDXAPP_PRIVATE_REQUIREMENTS_TESTING
   register: edxapp_install_private_python_reqs
   until: edxapp_install_private_python_reqs is succeeded
-  retries: 5
-  delay: 15
-  tags:
-    - install
-    - install:app-requirements
-
-- name: "Install Datadog APM requirements"
-  when: EDXAPP_DATADOG_ENABLE
-  pip:
-    name:
-      - "{{ EDXAPP_DDTRACE_PIP_SPEC }}"  # e.g. "ddtrace==2.8.2"
-    extra_args: "--exists-action w {{ item.extra_args|default('') }}"
-    virtualenv: "{{ edxapp_venv_dir }}"
-    state: present
-  become_user: "{{ edxapp_user }}"
-  register: edxapp_install_datadog_reqs
-  until: edxapp_install_datadog_reqs is succeeded
   retries: 5
   delay: 15
   tags:
