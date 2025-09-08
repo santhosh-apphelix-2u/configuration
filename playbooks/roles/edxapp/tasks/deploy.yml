@@ -303,7 +303,6 @@
     - install
     - install:app-requirements
 
-
 # The next few tasks set up the python code sandbox
 
 # need to disable this profile, otherwise the pip inside the sandbox venv has no permissions
