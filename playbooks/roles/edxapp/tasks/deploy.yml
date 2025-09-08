@@ -312,7 +312,7 @@
   args:
     chdir: "{{ edxapp_code_dir }}"
   become_user: "{{ edxapp_user }}"
-  when: EDXAPP_PRIVATE_NPM_REQUIREMENTS or EDXAPP_PRIVATE_NPM_REQUIREMENTS_TESTING
+  when: (EDXAPP_PRIVATE_NPM_REQUIREMENTS | length > 0) or (EDXAPP_PRIVATE_NPM_REQUIREMENTS_TESTING | length > 0)
   tags:
     - install
     - install:app-requirements
