@@ -597,7 +597,11 @@ EDXAPP_PRIVATE_REQUIREMENTS_TESTING: []
 # https://2u-internal.atlassian.net/wiki/spaces/AT/pages/396034066/How+to+add+private+requirements+to+edx-platform
 EDXAPP_PRIVATE_NPM_REQUIREMENTS: []
 
-# Temporary/staging-only NPM dependencies used for testing in stage
+# Private NPM dependencies used only for staging/testing purposes.
+# For each dependency added here, please include:
+# - Date added
+# - Description of why it is needed
+# - Link to the ticket for its removal
 EDXAPP_PRIVATE_NPM_REQUIREMENTS_TESTING: []
 
 # List of custom middlewares that should be used in edxapp to process
