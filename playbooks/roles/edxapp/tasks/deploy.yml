@@ -287,11 +287,16 @@
     - install:app-requirements
 
 
-- name: Install private node dependencies
-  shell: "easy_install --version && npm install {{ item.name }}"
-  with_items:
-    - "{{ EDXAPP_PRIVATE_NPM_REQUIREMENTS }}"
-    - "{{ EDXAPP_PRIVATE_NPM_REQUIREMENTS_TESTING }}"
+
+- name: Install private node dependencies in one command
+  shell: "easy_install --version && npm install --no-save {{ all_npm_packages | join(' ') }}"
+  vars:
+    all_npm_packages: >-
+      {{
+        (EDXAPP_PRIVATE_NPM_REQUIREMENTS + EDXAPP_PRIVATE_NPM_REQUIREMENTS_TESTING)
+        | map(attribute='name')
+        | list
+      }}
   args:
     chdir: "{{ edxapp_code_dir }}"
   become_user: "{{ edxapp_user }}"
