@@ -286,9 +286,12 @@
     - install
     - install:app-requirements
 
+# --no-save is passed as a flag to npm install to avoid saving these dependencies to package.json. Otherwise,
+# running npm install without this flag causes modifications to the package.json and package-lock.json
+# files. In turn, these modified files cause issues with working with the edxapp repository.
+# See https://github.com/edx/configuration/pull/256 for more details.
 
-
-- name: Install private node dependencies in one command
+- name: Install private node dependencies
   shell: "easy_install --version && npm install --no-save {{ all_npm_packages | join(' ') }}"
   vars:
     all_npm_packages: >-
