@@ -288,7 +288,10 @@
 
 # --no-save is passed as a flag to npm install to avoid saving these dependencies to package.json. Otherwise,
 # running npm install without this flag causes modifications to the package.json and package-lock.json
-# files. In turn, these modified files cause issues with working with the edxapp repository.
+# files. In turn, these modified files cause issues with working with the edxapp repository because,
+# while doing the setup "checkout edx-platform repo into {{ edxapp_code_dir }}" fails.
+# This only fails in sandbox, prod and stg are fine without this change (--no-save)
+#
 # See https://github.com/edx/configuration/pull/256 for more details.
 
 - name: Install private node dependencies
