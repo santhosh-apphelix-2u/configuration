@@ -583,6 +583,8 @@ EDXAPP_PRIVATE_REQUIREMENTS:
 
     # Plugins
     - name: edx-arch-experiments==6.1.0
+    # Added for sandbox testing
+    - name: "git+https://github.com/anupdhabarde/edx-proctoring-proctortrack.git@31c6c9923a51c903ae83760ecbbac191363aa2a2#egg=edx_proctoring_proctortrack"
 
 # This is an addendum to EDXAPP_PRIVATE_REQUIREMENTS for us in installing
 # requirements only in the stage environment. (It should only be set in stage.)
